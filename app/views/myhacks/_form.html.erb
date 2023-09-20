@@ -1,0 +1,73 @@
+<%= form_with(model: myhack) do |form| %>
+  <% if myhack.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(myhack.errors.count, "error") %> prohibited this myhack from being saved:</h2>
+
+      <ul>
+        <% myhack.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :title, style: "display: block" %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div>
+    <%= form.label :content, style: "display: block" %>
+    <%= form.text_area :content %>
+  </div>
+
+    <%= form.hidden_field :user_id %>
+    <%myhack.allthishacks.each do |x|%>
+      <%if x.is_a?(Myscript)%>
+    <%=form.fields_for :myscripts,x,{include_hidden: false} do |f|%>
+      <div>mon script <%=f.index+1%></div>
+  <div>
+    <%= f.label :title, style: "display: block" %>
+    <%= f.text_field :title %>
+  </div>
+
+  <div>
+    <%= f.label :content, style: "display: block" %>
+    <%= f.text_area :content %>
+  </div>
+  <div>
+    <%= f.label :programminglanguage_id, style: "display: block" %>
+    <%= f.select :programminglanguage_id, options_for_select(Programminglanguage.all.collect{|j|[j.name,j.id]},selected: x.programminglanguage_id), {include_blank: true} %>
+  </div>
+  <div>
+    <%= f.label :description, style: "display: block" %>
+    <%= f.text_area :description %>
+    <%= f.hidden_field :user_id %>
+  </div>
+    <%end%>
+  <%elsif x.is_a?(Mypic)%>
+    <%=form.fields_for :mypics,x,{include_hidden:false} do |f|%>
+      <div>mon hack <%=f.index+1%></div>
+  <div>
+    <%= f.label :title, style: "display: block" %>
+    <%= f.text_field :title %>
+  </div>
+  <div>
+    <%= f.label :image, style: "display: block" %>
+    <%= f.file_field :image %>
+  </div>
+
+  <div>
+    <%= f.label :content, style: "display: block" %>
+    <%= f.text_area :content %>
+  </div>
+
+    <%= f.hidden_field :user_id %>
+    <%end%>
+    <%end%>
+    <%end%>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

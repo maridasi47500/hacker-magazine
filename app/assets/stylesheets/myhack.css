@@ -1,0 +1,7 @@
+.myhacknote span {
+	font-size:30px;
+	color:grey;
+}
+.myhacknote span.mynote {
+	color:yellow;
+}

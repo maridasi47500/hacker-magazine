@@ -1,0 +1,24 @@
+<p style="color: green"><%= notice %></p>
+<div class="myhacknote">
+<%1.upto(5).each do |x|%>
+  <span onmouseenter="<%1.upto(x).each do |e|%>$('#mystar<%=e%>').addClass('mynote');<%end%>" id="mystar<%=x%>" onmouseleave="$('.myhacknote span').removeClass('mynote');">&#x2605;</span>
+<%end%>
+</div>
+<div>
+  <span class="notemoy"><%=@myhack.notemoy%></span>/5 (<span class="note_total_nb"><%=@myhack.note_total_nb%></span>)
+</div>
+
+<%= render @myhack %>
+<%= render @myhack.allmyhacks %>
+
+<div>
+  <%= link_to "ajouter mon script", addscript_myhack_path(@myhack) %> |
+  <%= link_to "ajouter ma photo d'écran ", addpic_myhack_path(@myhack) %> |
+  <%= link_to "Edit this myhack", edit_myhack_path(@myhack) %> |
+  <%= link_to "Back to myhacks", myhacks_path %>
+
+  <%= button_to "Destroy this myhack", @myhack, method: :delete %>
+</div>
+<div hidden id="myroutenote"><%=notes_path%></div>
+<div hidden id="myhackid"><%=@myhack.id%></div>
+<div hidden id="userid"></div>
