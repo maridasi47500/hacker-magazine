@@ -1,5 +1,6 @@
 class NotesController < ApplicationController
   before_action :set_note, only: %i[ show edit update destroy ]
+  protect_from_forgery except: [:create]
 
   # GET /notes or /notes.json
   def index

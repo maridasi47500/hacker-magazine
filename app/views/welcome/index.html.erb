@@ -1,1 +1,10 @@
+
+
+<h1>LEs meilleurs hacks du moment</h1>
+<%=render collection: Myhack.besthacks_premier,as: :hack, partial:"myhacks/firsthack"%>
+<%=render collection: Myhack.besthacks_other,as: :hack, partial:"myhacks/otherhack"%>
+
+
 <h1>LEs meilleurs hacks</h1>
+<%=render collection: Myhack.besthacksdumoment_premier,as: :hack, partial:"myhacks/firsthack"%>
+<%=render collection: Myhack.besthacksdumoment_other,as: :hack, partial:"myhacks/otherhack"%>

@@ -1,7 +1,7 @@
 <p style="color: green"><%= notice %></p>
 <div class="myhacknote">
 <%1.upto(5).each do |x|%>
-  <span onmouseenter="<%1.upto(x).each do |e|%>$('#mystar<%=e%>').addClass('mynote');<%end%>" id="mystar<%=x%>" onmouseleave="$('.myhacknote span').removeClass('mynote');">&#x2605;</span>
+  <span data-id="<%=x%>" onmouseenter="<%1.upto(x).each do |e|%>$('#mystar<%=e%>').addClass('mynote');<%end%>" id="mystar<%=x%>" onmouseleave="$('.myhacknote span').removeClass('mynote');">&#x2605;</span>
 <%end%>
 </div>
 <div>

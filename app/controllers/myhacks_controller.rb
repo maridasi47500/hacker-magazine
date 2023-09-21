@@ -71,6 +71,6 @@ class MyhacksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def myhack_params
-      params.require(:myhack).permit(:title, :content, :user_id,:myscripts_attributes=>{}, :mypics_attributes=>{})
+      params.require(:myhack).permit(:title,:subtitle, :content, :user_id,:myscripts_attributes=>{}, :mypics_attributes=>{})
     end
 end

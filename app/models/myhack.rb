@@ -22,4 +22,16 @@ class Myhack < ApplicationRecord
      def notemoy
            Myhack.left_outer_joins(:notes).select("myhacks.*, avg(notes.note) as my_avg_note").group("myhacks.id").having("myhacks.id = #{self.id}")[0].my_avg_note.to_i
              end
+     def self.besthacks_premier
+       Myhack.left_outer_joins(:notes).select("myhacks.*, avg(notes.note) as my_avg_note").group("myhacks.id").order("my_avg_note" => "desc").offset(0).limit(1)
+             end
+     def self.besthacks_other
+       Myhack.left_outer_joins(:notes).select("myhacks.*, avg(notes.note) as my_avg_note").group("myhacks.id").order("my_avg_note" => "desc").offset(1).limit(3)
+             end
+     def self.besthacksdumoment_premier
+       Myhack.left_outer_joins(:notes).select("myhacks.*, avg(notes.note) as my_avg_note").group("myhacks.id").having(["notes.created_at > ?",(DateTime.now - 2.month)]).order("my_avg_note" => "desc").offset(0).limit(1)
+             end
+     def self.besthacksdumoment_other
+       Myhack.left_outer_joins(:notes).select("myhacks.*, avg(notes.note) as my_avg_note").group("myhacks.id").having(["notes.created_at > ?",(DateTime.now - 2.month)]).order("my_avg_note" => "desc").offset(1).limit(3)
+             end
 end
