@@ -1,7 +1,10 @@
 class MyhacksController < ApplicationController
-  before_action :set_myhack, only: %i[ show edit update destroy addscript addpic ]
+  before_action :set_myhack, only: %i[ addmyotherscript show edit update destroy addscript addpic ]
 
   # GET /myhacks or /myhacks.json
+  def addmyotherscript
+    @myhack.myotherscripts.new
+  end
   def addscript
     @myhack.myscripts.new
   end
@@ -71,6 +74,6 @@ class MyhacksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def myhack_params
-      params.require(:myhack).permit(:title,:subtitle, :content, :user_id,:myscripts_attributes=>{}, :mypics_attributes=>{})
+      params.require(:myhack).permit(:title,:subtitle, :content, :user_id,:myscripts_attributes=>{}, :mypics_attributes=>{},:myotherscripts_attributes=>{})
     end
 end

@@ -1,7 +1,10 @@
 class Myhack < ApplicationRecord
   has_many :hackscripts, dependent: :destroy
   has_many :myscripts, through: :hackscripts, dependent: :destroy
+  has_many :hackmyotherscripts, dependent: :destroy
+  has_many :myotherscripts, through: :hackmyotherscripts, dependent: :destroy
   accepts_nested_attributes_for :myscripts, allow_destroy: true
+  accepts_nested_attributes_for :myotherscripts, allow_destroy: true
   has_many :hackpics, dependent: :destroy
   has_many :mypics, through: :hackpics, dependent: :destroy
   accepts_nested_attributes_for :mypics, allow_destroy: true
@@ -9,12 +12,14 @@ class Myhack < ApplicationRecord
   def allmyhacks
     a=self.mypics.left_outer_joins(:hackpics).select("mypics.*, hackpics.myorder").to_a
     b=self.myscripts.left_outer_joins(:hackscripts).select("myscripts.*, hackscripts.myorder").to_a
-    (a + b).sort_by{|k|k.myorder}
+    c=self.myotherscripts.left_outer_joins(:hackmyotherscripts).select("myotherscripts.*, hackmyotherscripts.myorder").to_a
+    (a + b + c).sort_by{|k|k.myorder}
   end
   def allthishacks
     a=self.mypics.to_a
     b=self.myscripts.to_a
-    (a + b).sort_by{|k|k.myhacks.length}.reverse
+    c=self.myotherscripts.to_a
+    (a + b + c).sort_by{|k|k.myhacks.length}.reverse
   end
    def note_total_nb
          self.notes.length

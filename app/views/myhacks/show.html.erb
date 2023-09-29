@@ -12,6 +12,8 @@
 <%= render @myhack.allmyhacks %>
 
 <div>
+  <%= link_to "ajouter mon script (ajouter le script dans le champ de texte)", addscript_myhack_path(@myhack) %> |
+  <%= link_to "ajouter mon script (ajouter chercher le script sur une clé, le disque)", addmyotherscript_myhack_path(@myhack) %> |
   <%= link_to "ajouter mon script", addscript_myhack_path(@myhack) %> |
   <%= link_to "ajouter ma photo d'écran ", addpic_myhack_path(@myhack) %> |
   <%= link_to "Edit this myhack", edit_myhack_path(@myhack) %> |

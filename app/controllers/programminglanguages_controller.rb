@@ -65,6 +65,6 @@ class ProgramminglanguagesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def programminglanguage_params
-      params.require(:programminglanguage).permit(:name, :myprogram)
+      params.require(:programminglanguage).permit(:name, :myprogram,:myscript)
     end
 end

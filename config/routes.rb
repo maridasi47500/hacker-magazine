@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :myotherscripts
   resources :notes
   resources :programminglanguages
   root 'welcome#index'
@@ -8,6 +9,7 @@ Rails.application.routes.draw do
     member do
       get "addpic"
       get "addscript"
+      get "addmyotherscript"
     end
   end
   resources :myscripts

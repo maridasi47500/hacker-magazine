@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Myotherscripts</h1>
+
+<div id="myotherscripts">
+  <% @myotherscripts.each do |myotherscript| %>
+    <%= render myotherscript %>
+    <p>
+      <%= link_to "Show this myotherscript", myotherscript %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New myotherscript", new_myotherscript_path %>

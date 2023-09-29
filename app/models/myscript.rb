@@ -12,7 +12,7 @@ class Myscript < ApplicationRecord
                       threads = []
                           p self.content
                               myvalue=""
-                                  p (self.programminglanguage.myprogram % [self.content.gsub("\r\n",";").gsub("\n",";")])
+                              p (self.programminglanguage.myprogram % [self.content.gsub("\r\n",";").gsub("\n",";")])
                                       threads << Thread.new { Thread.current[:output] = `#{self.programminglanguage.myprogram % [self.content.gsub("\r\n",";").gsub("\n",";")]}` }
                                           threads.each do |t|
                                                     t.join

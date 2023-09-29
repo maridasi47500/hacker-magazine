@@ -10,7 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_21_113539) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_29_101919) do
+  create_table "hackmyotherscripts", force: :cascade do |t|
+    t.integer "myotherscript_id"
+    t.integer "myhack_id"
+    t.integer "myorder"
+  end
+
   create_table "hackpics", force: :cascade do |t|
     t.integer "myhack_id"
     t.integer "mypic_id"
@@ -30,6 +36,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_21_113539) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "subtitle"
+  end
+
+  create_table "myotherscripts", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.string "filename"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "programminglanguage_id"
+    t.text "print"
   end
 
   create_table "mypics", force: :cascade do |t|
@@ -65,6 +82,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_21_113539) do
     t.text "myprogram"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "myscript"
   end
 
 end

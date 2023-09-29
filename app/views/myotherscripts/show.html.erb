@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @myotherscript %>
+
+<div>
+  <%= link_to "Edit this myotherscript", edit_myotherscript_path(@myotherscript) %> |
+  <%= link_to "Back to myotherscripts", myotherscripts_path %>
+
+  <%= button_to "Destroy this myotherscript", @myotherscript, method: :delete %>
+</div>

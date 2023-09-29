@@ -29,7 +29,7 @@
     <%myhack.allthishacks.each do |x|%>
       <%if x.is_a?(Myscript)%>
     <%=form.fields_for :myscripts,x,{include_hidden: false} do |f|%>
-      <div>mon script <%=f.index+1%></div>
+      <div>mon script <%=f.index.to_i+1%></div>
   <div>
     <%= f.label :title, style: "display: block" %>
     <%= f.text_field :title %>
@@ -51,7 +51,7 @@
     <%end%>
   <%elsif x.is_a?(Mypic)%>
     <%=form.fields_for :mypics,x,{include_hidden:false} do |f|%>
-      <div>mon hack <%=f.index+1%></div>
+      <div>mon hack <%=f.index.to_i+1%></div>
   <div>
     <%= f.label :title, style: "display: block" %>
     <%= f.text_field :title %>
@@ -67,6 +67,29 @@
   </div>
 
     <%= f.hidden_field :user_id %>
+    <%end%>
+  <%elsif x.is_a?(Myotherscript)%>
+    <%=form.fields_for :myotherscripts,x,{include_hidden:false} do |f|%>
+      <div>mon autre hack <%=f.index.to_i+1%></div>
+  <div>
+    <%= f.label :title, style: "display: block" %>
+    <%= f.text_field :title %>
+  </div>
+  <div> <%= f.label :filename, style: "display: block" %>
+    <%= f.file_field :filename %>
+  </div>
+
+  <div>
+    <%= f.label :description, style: "display: block" %>
+    <%= f.text_area :description %>
+  </div>
+  <div>
+    <%= f.label :programminglanguage_id, style: "display: block" %>
+    <%= f.select :programminglanguage_id, options_for_select(Programminglanguage.all.collect{|j|[j.name,j.id]},selected: x.programminglanguage_id), {include_blank: true} %>
+  </div>
+
+    <%= f.hidden_field :user_id %>
+
     <%end%>
     <%end%>
     <%end%>

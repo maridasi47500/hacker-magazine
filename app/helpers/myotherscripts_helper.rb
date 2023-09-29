@@ -1,0 +1,2 @@
+module MyotherscriptsHelper
+end
